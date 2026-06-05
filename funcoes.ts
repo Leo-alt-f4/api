@@ -38,3 +38,15 @@ export function criar(dados: NovoUsuario): Usuario {
     usuario.push(novoUsuario);
     return novoUsuario;
 }
+
+export function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
+    const usuarioEncontrado = usuario.find(u => u.id === id);
+    if (!usuarioEncontrado) return undefined;
+
+    if (dados.nome !== undefined) usuarioEncontrado.nome = dados.nome;
+    if (dados.sobrenome !== undefined) usuarioEncontrado.sobrenome = dados.sobrenome;
+    if (dados.quantidade !== undefined) usuarioEncontrado.quantidade = dados.quantidade;
+    if (dados.tipo !== undefined) usuarioEncontrado.tipo = dados.tipo;
+
+    return usuarioEncontrado;
+}

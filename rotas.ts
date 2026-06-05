@@ -1,7 +1,7 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { obterPorId, criar} from "./funcoes.ts";
-import type { NovoUsuario } from "./funcoes.ts";
+import { obterPorId, criar, atualizar} from "./funcoes.ts";
+import type { NovoUsuario, AtualizarUsuario } from "./funcoes.ts";
 import { usuario } from "./usuarios.ts";
 
 const router = Router();
@@ -31,6 +31,15 @@ router.post('/', (req: Request, res: Response) => {
 
     const novoUsuario = criar({ nome, sobrenome, quantidade, tipo });
     return res.status(201).json(novoUsuario);
+});
+
+router.patch('/:id', (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    const dados = req.body as AtualizarUsuario;
+    const usuarioAtualizado = atualizar(id, dados);
+
+    if (!usuarioAtualizado) return res.status(404).json({ erro: "Usuário não encontrado" });
+    return res.status(200).json(usuarioAtualizado);
 });
 
 export default router;
