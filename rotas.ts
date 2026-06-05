@@ -1,6 +1,6 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { obterPorId, criar, atualizar} from "./funcoes.ts";
+import { obterPorId, criar, atualizar, deletar} from "./funcoes.ts";
 import type { NovoUsuario, AtualizarUsuario } from "./funcoes.ts";
 import { usuario } from "./usuarios.ts";
 
@@ -40,6 +40,17 @@ router.patch('/:id', (req: Request, res: Response) => {
 
     if (!usuarioAtualizado) return res.status(404).json({ erro: "Usuário não encontrado" });
     return res.status(200).json(usuarioAtualizado);
+});
+
+router.delete('/:id', (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    const deletado = deletar(id);
+
+    if (!deletado) {
+        return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+
+    return res.status(204).send();
 });
 
 export default router;

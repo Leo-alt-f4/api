@@ -50,3 +50,10 @@ export function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefi
 
     return usuarioEncontrado;
 }
+
+export function deletar(id: number): boolean {
+    const index = usuario.findIndex(u => u.id === id);
+    if (index === -1) return false;
+    usuario.splice(index, 1);
+    return true;
+}
