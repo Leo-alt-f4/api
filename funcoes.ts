@@ -1,6 +1,6 @@
 import { usuario } from "./usuarios.ts";
 
-export interface Usuario {
+interface Usuario {
     id: number;
     nome: string;
     sobrenome: string;
@@ -8,25 +8,25 @@ export interface Usuario {
     tipo: string;
 }
 
-export interface NovoUsuario {
+interface NovoUsuario {
     nome: string;
     sobrenome: string;
     quantidade: number;
     tipo: string;
 }
 
-export interface AtualizarUsuario {
+interface AtualizarUsuario {
     nome?: string;
     sobrenome?: string;
     quantidade?: number;
     tipo?: string;
 }
 
-export function obterPorId(id: number): Usuario | undefined {
+function obterPorId(id: number): Usuario | undefined {
     return usuario.find(u => u.id === id);
 }
 
-export function criar(dados: NovoUsuario): Usuario {
+function criar(dados: NovoUsuario): Usuario {
     const novoId = Math.max(...usuario.map(u => u.id), 0) + 1;
     const novoUsuario: Usuario = {
         id: novoId,
@@ -39,7 +39,7 @@ export function criar(dados: NovoUsuario): Usuario {
     return novoUsuario;
 }
 
-export function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
+function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
     const usuarioEncontrado = usuario.find(u => u.id === id);
 
     if (!usuarioEncontrado) return undefined;
@@ -51,9 +51,17 @@ export function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefi
     return usuarioEncontrado;
 }
 
-export function deletar(id: number): boolean {
+function deletar(id: number): boolean {
     const index = usuario.findIndex(u => u.id === id);
     if (index === -1) return false;
     usuario.splice(index, 1);
     return true;
+}
+
+export {
+    obterPorId, criar, atualizar, deletar, 
+}
+
+export type {
+    Usuario, NovoUsuario, AtualizarUsuario
 }
