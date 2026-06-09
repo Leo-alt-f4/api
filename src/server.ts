@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request, Response } from "express";
-import rotasUsuarios from "./routes/rotas.ts";
+import rotasUsuarios from "./routes/user.routes.ts";
 
 const app = express();
 const PORT = 3000;

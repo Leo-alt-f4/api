@@ -1,4 +1,4 @@
-import { usuario } from "../entities/usuarios.ts";
+import { user } from "../entities/usuarios";
 
 interface Usuario {
     id: number;
@@ -26,11 +26,11 @@ interface AtualizarUsuario {
 }
 
 function obterPorId(id: number): Usuario | undefined {
-    return usuario.find(u => u.id === id);
+    return user.find(u => u.id === id);
 }
 
 function criar(dados: NovoUsuario): Usuario {
-    const novoId = Math.max(...usuario.map(u => u.id), 0) + 1;
+    const novoId = Math.max(...user.map(u => u.id), 0) + 1;
     const novoUsuario: Usuario = {
         id: novoId,
         nome: dados.nome,
@@ -39,12 +39,12 @@ function criar(dados: NovoUsuario): Usuario {
         tipo: dados.tipo,
         email: dados.email
     };
-    usuario.push(novoUsuario);
+    user.push(novoUsuario);
     return novoUsuario;
 }
 
 function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
-    const usuarioEncontrado = usuario.find(u => u.id === id);
+    const usuarioEncontrado = user.find(u => u.id === id);
 
     if (!usuarioEncontrado) return undefined;
     if (dados.nome !== undefined) usuarioEncontrado.nome = dados.nome;
@@ -57,9 +57,9 @@ function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
 }
 
 function deletar(id: number): boolean {
-    const index = usuario.findIndex(u => u.id === id);
+    const index = user.findIndex(u => u.id === id);
     if (index === -1) return false;
-    usuario.splice(index, 1);
+    user.splice(index, 1);
     return true;
 }
 

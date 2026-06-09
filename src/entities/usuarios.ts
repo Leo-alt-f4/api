@@ -1,11 +1,11 @@
-export const usuario = [
+export const user = [
     {
         id: 1,
         nome: "Ronaldo",
         sobrenome: "Silva",
         quantidade: 3000,
         tipo: "positivo",
-        email: ""
+        email: "silva.ronaldo@gmail.com"
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const usuario = [
         sobrenome: "Gomes",
         quantidade: -1750.43,
         tipo: "negativo",
-        email: ""
+        email: "claud10.gomes@gmail.com"
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ export const usuario = [
         sobrenome: "Pereira",
         quantidade: 0,
         tipo: "neutro",
-        email: ""
+        email: "rafaPera@outlook.com"
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ export const usuario = [
         sobrenome: "Ferrari",
         quantidade: 10000,
         tipo: "positivo",
-        email: ""
+        email: "NataliaFerrari@gmail.com"
     },
     {
         id: 5,
@@ -37,7 +37,7 @@ export const usuario = [
         sobrenome: "Dutra",
         quantidade: -1750.43,
         tipo: "negativo",
-        email: ""
+        email: "C4rl0s_Dutra@outlook.com"
     }
 ];
 
