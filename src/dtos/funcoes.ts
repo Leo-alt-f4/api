@@ -1,4 +1,4 @@
-import { usuario } from "./usuarios.ts";
+import { usuario } from "../entities/usuarios.ts";
 
 interface Usuario {
     id: number;
@@ -6,6 +6,7 @@ interface Usuario {
     sobrenome: string;
     quantidade: number;
     tipo: string;
+    email: string;
 }
 
 interface NovoUsuario {
@@ -13,6 +14,7 @@ interface NovoUsuario {
     sobrenome: string;
     quantidade: number;
     tipo: string;
+    email: string;
 }
 
 interface AtualizarUsuario {
@@ -20,6 +22,7 @@ interface AtualizarUsuario {
     sobrenome?: string;
     quantidade?: number;
     tipo?: string;
+    email?: string;
 }
 
 function obterPorId(id: number): Usuario | undefined {
@@ -33,7 +36,8 @@ function criar(dados: NovoUsuario): Usuario {
         nome: dados.nome,
         sobrenome: dados.sobrenome,
         quantidade: dados.quantidade,
-        tipo: dados.tipo
+        tipo: dados.tipo,
+        email: dados.email
     };
     usuario.push(novoUsuario);
     return novoUsuario;
@@ -47,6 +51,7 @@ function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
     if (dados.sobrenome !== undefined) usuarioEncontrado.sobrenome = dados.sobrenome;
     if (dados.quantidade !== undefined) usuarioEncontrado.quantidade = dados.quantidade;
     if (dados.tipo !== undefined) usuarioEncontrado.tipo = dados.tipo;
+    if (dados.email !== undefined) usuarioEncontrado.email = dados.email;
 
     return usuarioEncontrado;
 }

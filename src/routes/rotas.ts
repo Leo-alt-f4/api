@@ -1,8 +1,8 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { obterPorId, criar, atualizar, deletar} from "./funcoes.ts";
-import type { NovoUsuario, AtualizarUsuario } from "./funcoes.ts";
-import { usuario } from "./usuarios.ts";
+import { obterPorId, criar, atualizar, deletar} from "../dtos/funcoes.ts";
+import type { NovoUsuario, AtualizarUsuario } from "../dtos/funcoes.ts";
+import { usuario } from "../entities/usuarios.ts";
 
 const router = Router();
 
@@ -20,12 +20,12 @@ router.get('/:id', (req: Request, res: Response) => {
 
 router.post('/', (req: Request, res: Response) => {
     const body = req.body as NovoUsuario;
-    const { nome, sobrenome, quantidade, tipo } = body;
+    const { nome, sobrenome, quantidade, tipo, email } = body;
 
-    if (!nome || !sobrenome || quantidade === undefined || !tipo)
+    if (!nome || !sobrenome || quantidade || !tipo || email === undefined)
         return res.status(400).json({ erro: "Dados incompletos" });
 
-    const novoUsuario = criar({ nome, sobrenome, quantidade, tipo });
+    const novoUsuario = criar({ nome, sobrenome, quantidade, tipo, email});
     return res.status(201).json(novoUsuario);
 });
 
