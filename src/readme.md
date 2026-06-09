@@ -44,10 +44,11 @@ O sistema do servidor é simples, ele acaba por importar o express para "subir" 
 
 ## Como Rodar
 
-Para fazer o sistema funcionar, basta utilizar dos seguintes códigos abaixo:
+Para fazer o sistema funcionar, basta utilizar dentro da `src`, os seguintes códigos abaixo:
 
 ```
 npm install
+npx tsc --init
 npm run dev
 ```
 Com isso, só entrar na página web com a URL http://localhost:3000 e colocar 

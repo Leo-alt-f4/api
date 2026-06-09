@@ -20,4 +20,3 @@ app.use('/users', rotasUsuarios);
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
 });
-    
