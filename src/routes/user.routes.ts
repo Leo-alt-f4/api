@@ -2,7 +2,9 @@ import { Router } from "express";
 import type { Request, Response } from "express";
 import { obterPorId, criar, atualizar, deletar} from "../dtos/funcoes.ts";
 import type { NovoUsuario, AtualizarUsuario } from "../dtos/funcoes.ts";
-import { user } from "../entities/usuarios.ts";
+
+import dadosUsuarios from "../entities/usuarios.json" with { type: 'json' };
+const { user } = dadosUsuarios; 
 
 const router = Router();
 
@@ -22,7 +24,7 @@ router.post('/', (req: Request, res: Response) => {
     const body = req.body as NovoUsuario;
     const { nome, sobrenome, quantidade, tipo, email } = body;
 
-    if (!nome || !sobrenome || quantidade || !tipo || email === undefined)
+    if (!nome || !sobrenome || !email || quantidade === undefined || !tipo)
         return res.status(400).json({ erro: "Dados incompletos" });
 
     const novoUsuario = criar({ nome, sobrenome, quantidade, tipo, email});

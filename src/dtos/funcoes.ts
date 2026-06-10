@@ -1,4 +1,5 @@
-import { user } from "../entities/usuarios";
+import dadosUsuarios from "../entities/usuarios.json" with { type: 'json' };
+const { user } = dadosUsuarios; 
 
 interface Usuario {
     id: number;
