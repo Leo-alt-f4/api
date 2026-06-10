@@ -1,6 +1,7 @@
 import express from "express";
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import rotasUsuarios from "./routes/user.routes.ts";
+import { AppError } from "./errors/AppError.ts";
 
 const app = express();
 const PORT = 3000;
@@ -16,6 +17,16 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/users', rotasUsuarios);
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  if (err instanceof AppError) {
+     res.status(err.statusCode).json({ erro: err.message });
+     return;
+  }
+  
+  console.error(err);
+  res.status(500).json({ erro: "Erro interno do servidor" });
+});
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
