@@ -3,26 +3,26 @@ const { user } = dadosUsuarios;
 
 interface Usuario {
     id: number;
-    nome: string;
-    sobrenome: string;
-    quantidade: number;
-    tipo: string;
+    name: string;
+    last_name: string;
+    quantity: number;
+    type: string;
     email: string;
 }
 
 interface NovoUsuario {
-    nome: string;
-    sobrenome: string;
-    quantidade: number;
-    tipo: string;
+    name: string;
+    last_name: string;
+    quantity: number;
+    type: string;
     email: string;
 }
 
 interface AtualizarUsuario {
-    nome?: string;
-    sobrenome?: string;
-    quantidade?: number;
-    tipo?: string;
+    name?: string;
+    last_name?: string;
+    quantity?: number;
+    type?: string;
     email?: string;
 }
 
@@ -34,10 +34,10 @@ function criar(dados: NovoUsuario): Usuario {
     const novoId = Math.max(...user.map(u => u.id), 0) + 1;
     const novoUsuario: Usuario = {
         id: novoId,
-        nome: dados.nome,
-        sobrenome: dados.sobrenome,
-        quantidade: dados.quantidade,
-        tipo: dados.tipo,
+        name: dados.name,
+        last_name: dados.last_name,
+        quantity: dados.quantity,
+        type: dados.type,
         email: dados.email
     };
     user.push(novoUsuario);
@@ -48,10 +48,10 @@ function atualizar(id: number, dados: AtualizarUsuario): Usuario | undefined {
     const usuarioEncontrado = user.find(u => u.id === id);
 
     if (!usuarioEncontrado) return undefined;
-    if (dados.nome !== undefined) usuarioEncontrado.nome = dados.nome;
-    if (dados.sobrenome !== undefined) usuarioEncontrado.sobrenome = dados.sobrenome;
-    if (dados.quantidade !== undefined) usuarioEncontrado.quantidade = dados.quantidade;
-    if (dados.tipo !== undefined) usuarioEncontrado.tipo = dados.tipo;
+    if (dados.name !== undefined) usuarioEncontrado.name = dados.name;
+    if (dados.last_name !== undefined) usuarioEncontrado.last_name = dados.last_name;
+    if (dados.quantity !== undefined) usuarioEncontrado.quantity = dados.quantity;
+    if (dados.type !== undefined) usuarioEncontrado.type = dados.type;
     if (dados.email !== undefined) usuarioEncontrado.email = dados.email;
 
     return usuarioEncontrado;

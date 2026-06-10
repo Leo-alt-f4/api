@@ -2,42 +2,42 @@
   "user": [
     {
       "id": 1,
-      "nome": "Ronaldo",
-      "sobrenome": "Silva",
-      "quantidade": 3000,
-      "tipo": "positivo",
+      "name": "Ronaldo",
+      "last_name": "Silva",
+      "quantity": 3000,
+      "type": "positivo",
       "email": "silva.ronaldo@gmail.com"
     },
     {
       "id": 2,
-      "nome": "Cláudio",
-      "sobrenome": "Gomes",
-      "quantidade": -1750.43,
-      "tipo": "negativo",
+      "name": "Cláudio",
+      "last_name": "Gomes",
+      "quantity": -1750.43,
+      "type": "negativo",
       "email": "claud10.gomes@gmail.com"
     },
     {
       "id": 3,
-      "nome": "Rafael",
-      "sobrenome": "Pereira",
-      "quantidade": 0,
-      "tipo": "neutro",
+      "name": "Rafael",
+      "last_name": "Pereira",
+      "quantity": 0,
+      "type": "neutro",
       "email": "rafaPera@outlook.com"
     },
     {
       "id": 4,
-      "nome": "Natália",
-      "sobrenome": "Ferrari",
-      "quantidade": 10000,
-      "tipo": "positivo",
+      "name": "Natália",
+      "last_name": "Ferrari",
+      "quantity": 10000,
+      "type": "positivo",
       "email": "NataliaFerrari@gmail.com"
     },
     {
       "id": 5,
-      "nome": "Carlos",
-      "sobrenome": "Dutra",
-      "quantidade": -1750.43,
-      "tipo": "negativo",
+      "name": "Carlos",
+      "last_name": "Dutra",
+      "quantity": -1750.43,
+      "type": "negativo",
       "email": "C4rl0s_Dutra@outlook.com"
     }
   ]

@@ -22,12 +22,12 @@ router.get('/:id', (req: Request, res: Response) => {
 
 router.post('/', (req: Request, res: Response) => {
     const body = req.body as NovoUsuario;
-    const { nome, sobrenome, quantidade, tipo, email } = body;
+    const { name, last_name, quantity, type, email } = body;
 
-    if (!nome || !sobrenome || !email || quantidade === undefined || !tipo)
+    if (!name || !last_name || !email || quantity === undefined || !type)
         return res.status(400).json({ erro: "Dados incompletos" });
 
-    const novoUsuario = criar({ nome, sobrenome, quantidade, tipo, email});
+    const novoUsuario = criar({ name, last_name, quantity, type, email});
     return res.status(201).json(novoUsuario);
 });
 
