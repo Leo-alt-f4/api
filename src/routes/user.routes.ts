@@ -1,51 +1,61 @@
 import { Router } from "express";
-import type { Request, Response } from "express";
-import { obterPorId, criar, atualizar, deletar} from "../dtos/funcoes.ts";
-import type { NovoUsuario, AtualizarUsuario } from "../dtos/funcoes.ts";
-
-import dadosUsuarios from "../entities/usuarios.json" with { type: 'json' };
-const { user } = dadosUsuarios; 
+import type { Request, Response, NextFunction } from "express";
+import { UsersRepository } from "../repositories/users.repository.ts";
+import { UsersService } from "../services/users.service.ts";
 
 const router = Router();
 
-router.get('/', (_req: Request, res: Response) => {
+const usersRepository = new UsersRepository();
+const usersService = new UsersService(usersRepository);
+
+router.get("/", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const users = usersService.getAllUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = String(req.params.id);
+    const user = usersService.getUserById(id);
     res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.get('/:id', (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    const usuarioEncontrado = obterPorId(id);
-
-    if (!usuarioEncontrado) return res.status(404).json({ erro: "Usuário não encontrado" });
-    return res.status(200).json(usuarioEncontrado);
+router.post("/", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { name, lastName, quantity, type, email } = req.body;
+    const newUser = usersService.createUser({ name, lastName, quantity, type, email });
+    res.status(201).json(newUser);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post('/', (req: Request, res: Response) => {
-    const body = req.body as NovoUsuario;
-    const { name, last_name, quantity, type, email } = body;
-
-    if (!name || !last_name || !email || quantity === undefined || !type)
-        return res.status(400).json({ erro: "Dados incompletos" });
-
-    const novoUsuario = criar({ name, last_name, quantity, type, email});
-    return res.status(201).json(novoUsuario);
+router.patch("/:id", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = String(req.params.id);
+    const { name, lastName, quantity, type, email } = req.body;
+    const updatedUser = usersService.updateUser(id, { name, lastName, quantity, type, email });
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.patch('/:id', (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    const dados = req.body as AtualizarUsuario;
-    const usuarioAtualizado = atualizar(id, dados);
-
-    if (!usuarioAtualizado) return res.status(404).json({ erro: "Usuário não encontrado" });
-    return res.status(200).json(usuarioAtualizado);
-});
-
-router.delete('/:id', (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    const deletado = deletar(id);
-
-    if (!deletado) return res.status(404).json({ erro: "Usuário não encontrado" });
-    return res.status(204).send();
+router.delete("/:id", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = String(req.params.id);
+    usersService.deleteUser(id);
+    res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;
