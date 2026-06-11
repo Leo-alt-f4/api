@@ -12,7 +12,7 @@ export interface IUsersRepository {
 }
 
 export class UsersRepository implements IUsersRepository {
-  private readonly filePath = "./src/entities/usuarios.json";
+  private readonly filePath = path.join(import.meta.dirname, "../entities/usuarios.json");
   
   private readData(): User[]{
     if(!fs.existsSync(this.filePath)) return [] ;
@@ -23,7 +23,7 @@ export class UsersRepository implements IUsersRepository {
     const rawUsers = parsedJson.user || [];
 
     return rawUsers.map((item: any) => {
-            const user = new User(
+      const user = new User(
         item.name,
         item.lastName,
         Number(item.quantity),
@@ -74,15 +74,17 @@ export class UsersRepository implements IUsersRepository {
   }
 
   public create(user: User): User {
-    this.readData().push(user);
+    const users = this.readData();
+    users.push(user);
+    this.writeData(users);
     return user;
   }
 
   public update(user: User): User {
     const users = this.readData();
-    const index = this.readData().findIndex(u => u.id === user.id);
+    const index = users.findIndex(u => u.id === user.id);
     if (index !== -1) {
-      this.readData()[index] = user;
+      users[index] = user;
       this.writeData(users);
     }
     return user;
