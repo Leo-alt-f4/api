@@ -1,8 +1,12 @@
-import { NextFunction, Request, Response } from "express";
-import { UsersService } from "../services/users.service";
+import type { NextFunction, Request, Response } from "express";
+import { UsersService } from "../services/users.service.ts";
 
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    private readonly usersService: UsersService;
+
+    constructor(usersService: UsersService) {
+        this.usersService = usersService;
+   }
     
     public getAll = (req: Request, res: Response, next: NextFunction) => {
         try {
