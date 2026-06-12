@@ -32,14 +32,26 @@ export class UsersRepository implements IUsersRepository {
         String(item.id)
       );
 
-      if (item.createdAt) {
-        Object.defineProperty(user, "createdAt", {
-          value: new Date(item.createdAt),
+      if (item.createdDate) {
+        Object.defineProperty(user, "createdDate", {
+          value: new Date(item.createdDate),
           writable: false
         });
       }
-      if (item.updatedAt) {
-        user.updatedAt = new Date(item.updatedAt);
+      
+      if(item.createdTime) {
+        Object.defineProperty(user, "createdTime", {
+          value: new Date(item.createdTime),
+          writable: false
+        });
+      }
+      
+      if (item.updatedDate) {
+        user.updatedDate = new Date(item.updatedDate);
+      }
+
+      if (item.updatedTime) {
+        user.updatedTime = new Date(item.updatedTime);
       }
 
       return user;
@@ -54,8 +66,10 @@ export class UsersRepository implements IUsersRepository {
       quantidade: u.quantity,
       tipo: u.type,
       email: u.email,
-      createdAt: u.createdAt,
-      updatedAt: u.updatedAt
+      dataCriada: u.createdDate,
+      horaCriada: u.createdTime,
+      dataAtualizada: u.updatedDate,
+      horaAtualizada: u.updatedTime
     }));
 
     fs.writeFileSync(this.filePath, JSON.stringify({ user: rawUsers }, null, 2));

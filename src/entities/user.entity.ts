@@ -7,8 +7,10 @@ export class User {
   public quantity: number;
   public type: string;
   public email: string;
-  public readonly createdAt: Date;
-  public updatedAt: Date;
+  public readonly createdTime: Date | string;
+  public readonly createdDate: Date | string;
+  public updatedTime: Date | string;
+  public updatedDate: Date | string;
 
   constructor(name: string, lastName: string, quantity: number, type: string, email: string, id?: string) {
     this.id = id ?? randomUUID();
@@ -17,32 +19,40 @@ export class User {
     this.quantity = quantity;
     this.type = type;
     this.email = email;
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    this.createdTime = new Date().toLocaleDateString("pt-BR");
+    this.updatedTime = new Date().toLocaleDateString("pt-BR");
+
+    this.createdDate = new Date().toLocaleTimeString("pt-BR");
+    this.updatedDate = new Date().toLocaleTimeString("pt-BR");
   }
 
   public updateName(name: string): void {
     this.name = name;
-    this.updatedAt = new Date();
+    this.updatedTime = new Date();
+    this.updatedDate = new Date();
   }
 
   public updateEmail(email: string): void {
     this.email = email;
-    this.updatedAt = new Date();
+    this.updatedTime = new Date();
+    this.updatedDate = new Date();
   }
 
   public updateLastName(lastName: string):void {
     this.lastName = lastName;
-    this.updatedAt = new Date();
+    this.updatedTime = new Date();
+    this.updatedDate = new Date();
   }
 
   public updateQuantity(quantity: number):void {
     this.quantity = quantity;
-    this.updatedAt = new Date();
+    this.updatedTime = new Date();
+    this.updatedDate = new Date();
   }
 
   public updateType(type: string):void {
     this.type = type;
-    this.updatedAt = new Date();
+    this.updatedDate = new Date();
+    this.updatedTime = new Date();
   }
 }
