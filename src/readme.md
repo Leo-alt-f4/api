@@ -7,7 +7,7 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
 
 * [Descrição](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#descri%C3%A7%C3%A3o)
 
-* Atualizações
+* [Atualizações](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#atualiza%C3%A7%C3%B5es)
     * controllers
     * dtos
     * entities
@@ -58,6 +58,21 @@ O código em si utiliza-se de bibliotecas como:
 
 
 ## Atualizações
+
+#### Controller
+Onde antes o sistema de rotas tratava de checar se um método, como a `getUserById` e o status do servidor, estavam ativos, na `users.controller` ela realiza estas buscas e checagens, deixando o sistema de rotas somente com os 'links' de cada função (get, post, patch e delete).  
+    
+#### Dtos
+Tem como a funcionalidade de exportar os valores de criação e atualização, assim, não sendo necessário em cada arquivo, gerar uma base do `usuários.json` para funcionar o sistema.
+
+#### Entities
+Está armazenando tanto o arquivo com os dados de usuário, quanto quem trata de transformar os dados do usuário, para serem lidos em todo o sistema (o `users.entity`).
+
+#### Errors
+Possui uma função simples de tratamento de erros, retornando ao usuário as falhas ocorridas durante o código
+
+#### Repositories
+Faz o sistema de CRUD que gera e joga os dados para serem armazenados na `usuarios.json` realizados no servidor.
 
 ## Seu Sistema
 Os arquivos estão separados entre:
