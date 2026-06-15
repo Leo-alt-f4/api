@@ -2,43 +2,59 @@
   "user": [
     {
       "id": 1,
-      "name": "Ronaldo",
-      "last_name": "Silva",
-      "quantity": 3000,
-      "type": "positivo",
-      "email": "silva.ronaldo@gmail.com"
+      "nome": "Ronaldo",
+      "quantidade": 3000,
+      "tipo": "positivo",
+      "email": "silva.ronaldo@gmail.com",
+      "dataCriada": "15:59:13",
+      "horaCriada": "15/06/2026",
+      "dataAtualizada": "15:59:13",
+      "horaAtualizada": "15/06/2026"
     },
     {
       "id": 2,
-      "name": "Cláudio",
-      "last_name": "Gomes",
-      "quantity": -1750.43,
-      "type": "negativo",
-      "email": "claud10.gomes@gmail.com"
+      "nome": "Cláudio",
+      "quantidade": -1750.43,
+      "tipo": "negativo",
+      "email": "claud10.gomes@gmail.com",
+      "dataCriada": "15:59:13",
+      "horaCriada": "15/06/2026",
+      "dataAtualizada": "15:59:13",
+      "horaAtualizada": "15/06/2026"
     },
     {
       "id": 3,
-      "name": "Rafael",
-      "last_name": "Pereira",
-      "quantity": 0,
-      "type": "neutro",
-      "email": "rafaPera@outlook.com"
+      "nome": "Rafael",
+      "quantidade": 0,
+      "tipo": "neutro",
+      "email": "rafaPera@outlook.com",
+      "dataCriada": "15:59:13",
+      "horaCriada": "15/06/2026",
+      "dataAtualizada": "15:59:13",
+      "horaAtualizada": "15/06/2026"
     },
     {
       "id": 4,
-      "name": "Natália",
-      "last_name": "Ferrari",
-      "quantity": 10000,
-      "type": "positivo",
-      "email": "NataliaFerrari@gmail.com"
+      "nome": "Natália",
+      "sobrenome": "Ferrari",
+      "quantidade": 100000,
+      "tipo": "positivo",
+      "email": "NatiEduFerrari@gmail.com",
+      "dataCriada": "15:59:13",
+      "horaCriada": "15/06/2026",
+      "dataAtualizada": "2026-06-15T18:59:13.789Z",
+      "horaAtualizada": "2026-06-15T18:59:13.789Z"
     },
     {
       "id": 5,
-      "name": "Carlos",
-      "last_name": "Dutra",
-      "quantity": -1750.43,
-      "type": "negativo",
-      "email": "C4rl0s_Dutra@outlook.com"
+      "nome": "Carlos",
+      "quantidade": -1750.43,
+      "tipo": "negativo",
+      "email": "C4rl0s_Dutra@outlook.com",
+      "dataCriada": "15:59:13",
+      "horaCriada": "15/06/2026",
+      "dataAtualizada": "15:59:13",
+      "horaAtualizada": "15/06/2026"
     }
   ]
 }
