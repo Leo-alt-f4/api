@@ -1,10 +1,8 @@
 # O Servidor
-
 Para a criação do sistema, imaginei uma API básica de clientes com uma quantia de dinheiro.
 
 
 ## Sumário 
-
 * [Descrição](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#descri%C3%A7%C3%A3o)
 
 * [Atualizações](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#atualiza%C3%A7%C3%B5es)
@@ -27,12 +25,20 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
     * `server.ts`
 
 * [Rotas](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#rotas)
+    * Servidor
+    * Processamento
+    * Resposta
 
 * [Uso de POO](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#uso-de-poo)
+    * Classes e Objetos
+    * Encapsulamento
+    * Abstração
+    * Dependências
 
 * Principais dúvidas
 
 * [Como Rodar](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#como-rodar)
+
 
 ## Descrição
 O código em si utiliza-se de bibliotecas como:
@@ -49,7 +55,6 @@ O código em si utiliza-se de bibliotecas como:
 
 
 ## Atualizações
-
 #### Controller
 Onde antes o sistema de rotas tratava de checar se um método, como a `getUserById` e o status do servidor, estavam ativos, na `users.controller` ela realiza estas buscas e checagens, deixando o sistema de rotas somente com os 'links' de cada função (get, post, patch e delete).  
     
@@ -65,9 +70,8 @@ Possui uma função simples de tratamento de erros, retornando ao usuário as fa
 #### Repositories
 Faz o sistema de CRUD que gera e joga os dados para serem armazenados na `usuarios.json` realizados no servidor.
 
-## Seu Sistema
-Os arquivos estão separados entre:
 
+## Seu Sistema
 #### `usuarios.json`
 Está todo o sistema de usuários, onde cada um possui um id (numérico), nome (string), sobrenome (string), quantidade (numérico) e tipo (string, podendo ser 'positivo', 'negativo' e 'neutro').
 usuarios.json
@@ -227,12 +231,22 @@ O sistema de rotas então, informa a `users.controller` o método utilizado e co
 #### Resposta
 Caso tudo dê certo, é retornado ao sistema como status 200 (Ok), 201 (Created) ou 204 (No Content). Se der algo de errado, como a tentativa de excluir um usuário inexistente ou um usuário não encontrado, o sistema encontra a falha por meio do `try/catch` e envia este erro para o usuário entender o ocorrido.
 
-## Uso de POO
 
+## Uso de POO
+#### Classes e Objetos:
+É utilizado as classes como parte fundamental. A classe `user` (em `user.entity`, por exemplo) define a estrutura dos usuários, permitindo que o sistema manipule os valores dos dados na memória, com propriedades definidas pelo id, nome, sobrenome, e-mail e dentre outros dos valores.
+
+#### Encapsulamento:
+Aplicado para proteger a integridade dos dados, o encapsulamento define métodos e propriedades, como a `private` dentro da `users.repository`, no qual dá garantia de que outras partes do sistema não possam utilizar-se das informações do `usuarios.json` diretamente, trazendo uma segurança para os dados.
+
+#### Abstração:
+Foi criado o sistema de interface `IUsersRepository` para servir como um sistema de 'contrato abstrato', no qual isola a `UsersService` dos detalhes de implementação. Com isso, caso haja mudanças do arquivo .json por um banco de dados (SQL ou NoSQL), os serviços se manterão intactos.
+
+#### Dependências: 
+O `UsersService` não cria o seu próprio repositório. Em vez disso, ele recebe uma cópia do repositório .json, através do seu construtor. Essa prática ajuasta as classes de forma flexível, facilitando a manutenção e a criação de testes automatizados.
 
 
 ## Principais dúvidas
-
 1. Sistema de bibliotecas: 
 
     Alguns arquivos, como `users.repository` e `users.entity`, só demonstram estar 'funcionais' quando outros códigos estão abertos, no caso do exemplo descrito anteriormente, precisando da `users.controllers`. Entretanto, o código roda normalmente, sem aparentar falhas. Durante algumas pesquisas, foi visto que precisava de um `tsconfig` para que o sistema funcionasse, porém não se mostrou útil - no que fez o código no fim até apresentar falhas.
@@ -251,7 +265,6 @@ Caso tudo dê certo, é retornado ao sistema como status 200 (Ok), 201 (Created)
 
 
 ## Como Rodar
-
 Para fazer o sistema funcionar, basta utilizar dentro da `src`, os seguintes códigos abaixo:
 
 ```
