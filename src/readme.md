@@ -14,30 +14,21 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
     * errors
     * repositories
 
-* [Seu-Sistema](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#como-rodar)
-    * [`usuarios.json`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#usuariosjson)
+* [Seu-Sistema](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#seu-sistema)
+    * `usuarios.json`
+    * `user.entity.ts`
+    * `create-user.dto.ts`
+    * `update-user.dto.ts`
+    * `AppError.ts`
+    * `users.repository.ts`
+    * `users.service.ts`
+    * `users.controller.ts`
+    * `user.routes.ts`
+    * `server.ts`
 
-    * [`user.entity.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#userentityts)
+* [Rotas](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#rotas)
 
-    * [`create-user.dto.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#createuserdtots)
-
-    * [`update-user.dto.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#updateuserdtots)
-
-    * [`AppError.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#apperrorts)
-
-    * [`users.repository.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#usersrepositoryts)
-
-    * [`users.service.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#usersservicets)
-
-    * [`users.controller.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#userscontrollerts)
-
-    * [`user.routes.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#userroutests)
-
-    * [`server.ts`](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#serverts)
-
-* Rotas
-
-* Uso de POO
+* [Uso de POO](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#uso-de-poo)
 
 * Principais dúvidas
 
@@ -99,7 +90,7 @@ Serve para exportar os valores base de um usuário, sendo o nome, sobrenome, qua
 #### `update-user.dto.ts`
 A `update-user` possui a funcionalidade parecida com a `create-user`, exceto pelo fato de que os valores não precisam existir (ou serem alterados). Com isso, os dados possuem uma interrogação ao lado, ditando ao sistema que aquele valor pode ou não existir.
 
-```
+```TypeScript
 export interface UpdateUserDto {
   /*
     (property) UpdateUserDto.name?: string | undefined
@@ -115,7 +106,7 @@ Tem uma base simples, no qual serve somente para retornar os erros ocorridos dur
 
 
 **Exemplo:**
-```
+```TypeScript
 /* 
     Código da users.repository.ts
     essa função abaixo, trata de atualizar o usuário,
@@ -159,7 +150,7 @@ O sistema funciona como um controlador dos CRUDs que foram ajustados na `users.s
 Ele tem como prioridade, fazer os requerimentos dos métodos, desde a busca de um único usuário, até deletar o mesmo. No qual, por meio do modelo de _try, catch_ (tenta uma função específica e caso não funcione, 'cai' em outro resultado), ele determina que a resposta do sistema deve ser positiva para retornar a função desejada, mas caso não consiga realizar isso, ele retorna um erro (no qual foi especificado na users.service, baseado na falha ocorrida).
 
 **Exemplo:**
-```
+```TypeScript
 /*
     Método de busca por todos os usuários
 */
@@ -182,7 +173,7 @@ public getAll = (req: Request, res: Response, next: NextFunction) => {
 #### `user.routes.ts`
 Por fim, o sistema de rotas junta as funções geradas nos sistemas de `users.repository`, `users.controller` e `users.service` e aplica um sobre o outro, para atualizar cada parte do sistema, deixando o fluxo coerente com o esperado
 
-```
+```TypeScript
 // Cria a constante com os dados da users.repository
 const usersRepository = new UsersRepository();
 
@@ -201,7 +192,63 @@ Com isso, é utilizada a última variável criada (`userController`) e ajusta o 
 #### `server.ts`
 O sistema do servidor é simples, ele acaba por importar o express para "subir" o código para a localhost, onde tem como funções a `health`, que checa os status e traz a data atual. Além disso, ele puxa a `users`, com as rotas de usuários criadas no `rotas.ts`.
 
------------------------------------------------------------------------------------------------
+
+## Rotas
+O sistema de rotas ficou da seguinte forma:
+
+```mermaid
+graph TD
+  A[Cliente/Insomnia] 
+  --> Servidor 
+  --> Rotas 
+  --> B[Serviço/As Regras] 
+  --> C[Repositório/JSON]
+```
+
+#### Servidor
+Ele monitora os acontecimentos da porta 3000. Quando chega uma nova requisição para a `/usuarios`, ele direciona o sistema para a rota específica pedida.
+
+```TypeScript
+app.use('/users', rotasUsuarios);
+```
+
+#### Rotas
+O sistema determina por qual caminho o requerimento deve seguir, analisando o método HTTP (GET, POST...) e o final da URL para saber o quê fazer, tendo como possíveis métodos:
+
+
+|         |                 | POST            | PATCH           | DELETE          | 
+|---      | :-------------: | :-------------: | :-------------: | :-------------: |
+|**GET**  | health          | users           | users/:id       | users/:id       |
+
+
+#### Processamento
+O sistema de rotas então, informa a `users.controller` o método utilizado e com isso, é chamada a `users.service`, que valida as regras de negócio (e-mail correto, possui nome e sobrenome e dentre outros). Com isso, é finalmente chamada a `users.repository` que aplica as alterações desejadas, e já altera a `updateTime` e `updateData`, com os valores da mudança atual, isso sendo aplicado dentro do .json, sem apagar os usuários anteriores, somente armazenando a mudança atual.
+
+#### Resposta
+Caso tudo dê certo, é retornado ao sistema como status 200 (Ok), 201 (Created) ou 204 (No Content). Se der algo de errado, como a tentativa de excluir um usuário inexistente ou um usuário não encontrado, o sistema encontra a falha por meio do `try/catch` e envia este erro para o usuário entender o ocorrido.
+
+## Uso de POO
+
+
+
+## Principais dúvidas
+
+1. Sistema de bibliotecas: 
+
+    Alguns arquivos, como `users.repository` e `users.entity`, só demonstram estar 'funcionais' quando outros códigos estão abertos, no caso do exemplo descrito anteriormente, precisando da `users.controllers`. Entretanto, o código roda normalmente, sem aparentar falhas. Durante algumas pesquisas, foi visto que precisava de um `tsconfig` para que o sistema funcionasse, porém não se mostrou útil - no que fez o código no fim até apresentar falhas.
+
+2. Uso de If/Else para declaração de erros:
+
+    Essa dúvida se trata mais na possibilidade de melhoria no código. Tanto neste projeto, quanto na `master`, foi utilizado um sistema de checagem na criação e atualização de usuário, uma condicional para cada dado na .json. Além disso, essa estrutura se mantém em boa parte do código. Seria possível utilizar um método de looping que leia dado por dado e faça um check-up geral (por exemplo, para checar se os dados de criação de usuário batem com os da .json, sem precisar repassar dado-a-dado pro sistema)? E isso seria mais eficiente do que um sistema condicional para cada valor?
+
+3. Segurança
+
+    O sistema de rotas agora ficou separado de seus controladores, as funções foram separadas entre a _entities_, _repositories_ e _services_, no qual deixou uma maior legibilidade. Entendo que em um sistema grande, isso é excencial, mas em vista da API atual, qual a relevância além de melhorar a leitura? Isso ajuda no quesito de segurança e tratamento dos dados? 
+
+4. Importação de arquivos .ts
+
+    Durante a realização do código, foi feito as importações da forma simples - `import { exemploFuncao } from "./arquivoExemplo"` - mas isso apresentava falha para o TypeScript e, mesmo quando não estava com falhas aparentes, o código retornava como erro, como se o Node não encontrasse o arquivo, sendo necessário ditar em cada import, que o arquivo é do sistema TS - `import { novaFuncao } from "./arquivoCerto.ts"`. Contudo, me trouxe mais dúvida ao tentar procurar os arquivos só pelo seu nome e foram encontrados. Isso ocorre por conta do TS, Node ou uma configuração do próprio código?
+
 
 ## Como Rodar
 
