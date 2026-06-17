@@ -283,11 +283,8 @@ npm run dev
 Com isso, só entrar na página web com a URL http://localhost:3000 e colocar 
 a [/health](http://localhost:3000/health) para checar o server, ou [/users](http://localhost:3000/users) para visualizar os usuários. 
 
-
 Para utilizar-se dos métodos HTTP, é necessário de uma extensão que realize estas funções (como _Insomniac_, _Postman_ ou _Thunder Client_) no qual possibilitam as configurações para deletar, criar, atualizar e muito mais.
-
 A base utilizada para criar ou atualizar um novo usuário é a seguinte:
-
 
 ```json
 {
