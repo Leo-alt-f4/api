@@ -1,6 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import { User } from "../entities/user.entity.ts";
+import type { UserDatabaseRow } from "../dtos/users-database.dto.ts";
 
 export interface IUsersRepository {
   findAll(): User[];
@@ -14,20 +15,19 @@ export interface IUsersRepository {
 export class UsersRepository implements IUsersRepository {
   private readonly filePath = path.join(import.meta.dirname, "../entities/usuarios.json");
   
-  private readData(): User[]{
-    if(!fs.existsSync(this.filePath)) return [] ;
+  private readData(): User[] {
+    if (!fs.existsSync(this.filePath)) return [];
 
     const fileData = fs.readFileSync(this.filePath, "utf-8");
-    const parsedJson = JSON.parse(fileData);
-
+    const parsedJson = JSON.parse(fileData) as { user: UserDatabaseRow[] };
     const rawUsers = parsedJson.user || [];
 
-    return rawUsers.map((item: any) => {
+    return rawUsers.map((item: UserDatabaseRow): User => {
       const user = new User(
-        item.name,
-        item.lastName,
-        Number(item.quantity),
-        item.type,
+        item.name ?? item.nome ?? "",
+        item.lastName ?? item.sobrenome ?? "",
+        Number(item.quantity ?? item.quantidade ?? 0),
+        item.type ?? item.tipo ?? "",
         item.email,
         String(item.id)
       );
