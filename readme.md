@@ -37,7 +37,7 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
 
 * Principais dúvidas
 
-* [Como Rodar](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#como-rodar)
+* [Como Utilizar](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#como-utilizar)
 
 
 ## Descrição
@@ -263,8 +263,16 @@ O `UsersService` não cria o seu próprio repositório. Em vez disso, ele recebe
 
     Durante a realização do código, foi feito as importações da forma simples - `import { exemploFuncao } from "./arquivoExemplo"` - mas isso apresentava falha para o TypeScript e, mesmo quando não estava com falhas aparentes, o código retornava como erro, como se o Node não encontrasse o arquivo, sendo necessário ditar em cada import, que o arquivo é do sistema TS - `import { novaFuncao } from "./arquivoCerto.ts"`. Contudo, me trouxe mais dúvida ao tentar procurar os arquivos só pelo seu nome e foram encontrados. Isso ocorre por conta do TS, Node ou uma configuração do próprio código?
 
+5. Manipulação de Dados no Json
 
-## Como Rodar
+    O sistema possui os valores do tipo de dado do usuário, podendo assim manipular da forma como for necessária para ajustar o comportamento de dados. Mas mesmo colocando em um sistema que interpreta o valor da .json sendo convertido na `users.entity`, o código ainda tratava os campos de nome e sobrenome como inexistentes, enquanto o de quantidade era retornado vazio (`null`). Somente após a tipagem dos dados, os campos se tornaram estáveis e visíveis dentro do servidor.
+
+6. Sistema de data/hora por região
+
+    Inicialmente, foi utilizado um sistema de data simples, com o intuito de retornar no servidor a data e hora que o usuário havia sido criado e a sua última atualização. Contudo, foi notado que, sem expressar uma localidade, o sistema de horas retornava de acordo com o UTC+0 (o padrão de hora). Por via disso, foi utilizado o `toLocaleTimeString` e `toLocaleDateString`, no qual, respectivamente, foram configurados para a data e hora de Brasília.
+
+
+## Como Utilizar
 Para fazer o sistema funcionar, basta utilizar dentro da `src`, os seguintes códigos abaixo:
 
 ```
@@ -273,3 +281,25 @@ npm run dev
 ```
 Com isso, só entrar na página web com a URL http://localhost:3000 e colocar 
 a [/health](http://localhost:3000/health) para checar o server, ou [/users](http://localhost:3000/users) para visualizar os usuários. 
+
+
+Para utilizar-se dos métodos HTTP, é necessário de uma extensão que realize estas funções (como _Insomniac_, _Postman_ ou _Thunder Client_) no qual possibilitam as configurações para deletar, criar, atualizar e muito mais.
+
+A base utilizada para criar ou atualizar um novo usuário é a seguinte:
+
+
+```json
+{
+  "name": "Coloque um nome aqui",
+  "lastName": "Coloque um sobrenome aqui",
+  "quantity": 1000, // Digite um valor numérico, positivo ou negativo, sem aspas
+  "type": "positivo", // Digite se ele é positivo, negativo ou neutro (baseado na quantidade)
+  "email": "SeuEmail.Aqui@gmail.com",
+  // Os valores de data e hora criada/atualizada não precisam ser postas, mas devem ser
+  // descritas como está abaixo
+  "dataCriada": "", 
+  "horaCriada": "",
+  "dataAtualizada": "",
+  "horaAtualizada": ""
+}
+```
