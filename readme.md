@@ -3,16 +3,16 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
 
 
 ## Sumário 
-* [Descrição](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#descri%C3%A7%C3%A3o)
+* [Descrição](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#descri%C3%A7%C3%A3o)
 
-* [Atualizações](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#atualiza%C3%A7%C3%B5es)
+* [Atualizações](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#atualiza%C3%A7%C3%B5es)
     * controllers
     * dtos
     * entities
     * errors
     * repositories
 
-* [Seu-Sistema](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#seu-sistema)
+* [Seu-Sistema](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#seu-sistema)
     * `usuarios.json`
     * `user.entity.ts`
     * `create-user.dto.ts`
@@ -24,20 +24,20 @@ Para a criação do sistema, imaginei uma API básica de clientes com uma quanti
     * `user.routes.ts`
     * `server.ts`
 
-* [Rotas](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#rotas)
+* [Rotas](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#rotas)
     * Servidor
     * Processamento
     * Resposta
 
-* [Uso de POO](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#uso-de-poo)
+* [Uso de POO](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#uso-de-poo)
     * Classes e Objetos
     * Encapsulamento
     * Abstração
     * Dependências
 
-* Principais dúvidas
+* [Principais dúvidas](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#principais-d%C3%BAvidas)
 
-* [Como Utilizar](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/src#como-utilizar)
+* [Como Utilizar](https://github.com/Leo-alt-f4/api/tree/Ajustes-novos/#como-utilizar)
 
 
 ## Descrição
@@ -273,9 +273,10 @@ O `UsersService` não cria o seu próprio repositório. Em vez disso, ele recebe
 
 
 ## Como Utilizar
-Para fazer o sistema funcionar, basta utilizar dentro da `src`, os seguintes códigos abaixo:
+Para fazer o sistema funcionar, basta utilizar os seguintes códigos abaixo:
 
 ```
+cd .\src\
 npm install
 npm run dev
 ```
