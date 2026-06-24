@@ -282,30 +282,5 @@ npm install @prisma/client @nestjs/swagger swagger-ui-express class-validator cl
 
 Aceitar com 'y' e pressionar Enter 
 Colocar o comando `npx prisma init`, inicializando os sistemas do prisma, logo após usando `npx prisma generate`
-Depois, utilizar um Terminal para armazenar o `docker`, usando o comando `docker compose up`
-
-Com isso, não devemos mais mexer neste Terminal e deve ser realizado em outro Terminal o código `npx prisma migrate dev --name create_users_and_tasks`
-
-Por fim, atualizar
-
-Com isso, só entrar na página web com a URL http://localhost:3000 e colocar 
-a [/health](http://localhost:3000/health) para checar o server, ou [/users](http://localhost:3000/users) para visualizar os usuários. 
-
-Para utilizar-se dos métodos HTTP, é necessário de uma extensão que realize estas funções (como _Insomniac_, _Postman_ ou _Thunder Client_) no qual possibilitam as configurações para deletar, criar, atualizar e muito mais.
-A base utilizada para criar ou atualizar um novo usuário é a seguinte:
-
-```json
-{
-  "name": "Coloque um nome aqui",
-  "lastName": "Coloque um sobrenome aqui",
-  "quantity": 1000, // Digite um valor numérico, positivo ou negativo, sem aspas
-  "type": "positivo", // Digite se ele é positivo, negativo ou neutro (baseado na quantidade)
-  "email": "SeuEmail.Aqui@gmail.com",
-  // Os valores de data e hora criada/atualizada não precisam ser postas, mas devem ser
-  // descritas como está abaixo
-  "dataCriada": "", 
-  "horaCriada": "",
-  "dataAtualizada": "",
-  "horaAtualizada": ""
-}
-```
+Com isso, deve ser realizado o código `npx prisma migrate dev --name create_users_and_tasks`
+Por fim, usamos o código `npm run start:dev` no qual tem como função rodar o servidor.
