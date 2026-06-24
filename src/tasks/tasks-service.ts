@@ -11,16 +11,14 @@ export class TasksService {
       where: { id: String(body.userId) },
     });
 
-    if (!userExists) {
-      throw new NotFoundException(`Usuário com ID ${body.userId} não encontrado.`);
-    }
+    if (!userExists) throw new NotFoundException(`Usuário com ID ${body.userId} não encontrado.`);
 
     return this.prisma.task.create({
       data: {
         title: body.title,
         description: body.description || null,
         status: body.status || 'PENDING',
-        userId: String(body.userId), 
+        userId: String(body.userId),
       },
     });
   }
@@ -29,13 +27,41 @@ export class TasksService {
     return this.prisma.task.findMany({
       include: {
         user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
+          select: { id: true, name: true, email: true },
         },
       },
+    });
+  }
+
+  async findOne(id: string) {
+    const task = await this.prisma.task.findUnique({
+      where: { id: String(id) },
+      include: {
+        user: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+    });
+
+    if (!task) throw new NotFoundException(`Tarefa com ID ${id} não encontrada.`);
+
+    return task;
+  }
+
+  async update(id: string, data: any) {
+    return this.prisma.task.update({
+      where: { id: String(id) },
+      data: {
+        title: data.title,
+        description: data.description,
+        status: data.status,
+      },
+    });
+  }
+
+  async remove(id: string) {
+    return this.prisma.task.delete({
+      where: { id: String(id) },
     });
   }
 }
