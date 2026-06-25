@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma-service';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: any) {
+  async create(data: CreateTaskDto) {
     const body = Array.isArray(data) ? data[0] : data;
     const userExists = await this.prisma.user.findUnique({
       where: { id: String(body.userId) },
@@ -48,7 +50,7 @@ export class TasksService {
     return task;
   }
 
-  async update(id: string, data: any) {
+  async update(id: string, data: UpdateTaskDto) {
     return this.prisma.task.update({
       where: { id: String(id) },
       data: {
