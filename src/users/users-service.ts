@@ -24,7 +24,6 @@ export class UsersService {
         id: true,
         name: true,
         email: true,
-        password: true
       }
     });
   }
@@ -35,7 +34,6 @@ export class UsersService {
         id: true,
         name: true,
         email: true,
-        password: true,
         tasks: true 
       },
     });
