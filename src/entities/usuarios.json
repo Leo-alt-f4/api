@@ -1,0 +1,88 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "nome": "Ronaldo",
+      "sobrenome": "Santi",
+      "quantidade": 30,
+      "tipo": "positivo",
+      "email": "silva.ronaldo@gmail.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": 2,
+      "nome": "Cláudio",
+      "sobrenome": "",
+      "quantidade": -1750.43,
+      "tipo": "negativo",
+      "email": "claud10.gomes@gmail.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": 3,
+      "nome": "Rafael",
+      "sobrenome": "",
+      "quantidade": 0,
+      "tipo": "neutro",
+      "email": "rafaPera@outlook.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": 4,
+      "nome": "Natália",
+      "sobrenome": "Ferrari",
+      "quantidade": 100000,
+      "tipo": "positivo",
+      "email": "NatiEduFerrari@gmail.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": 5,
+      "nome": "Carlos",
+      "sobrenome": "",
+      "quantidade": -1750.43,
+      "tipo": "negativo",
+      "email": "C4rl0s_Dutra@outlook.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": "8ec7b578-ba7d-4457-b9e8-a31f0db620e8",
+      "nome": "Gustavo",
+      "sobrenome": "Dantas",
+      "quantidade": 1321,
+      "tipo": "positivo",
+      "email": "Dantas.gusta@gmail.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    },
+    {
+      "id": "d67a5afc-c2a7-4815-8d28-86dd819741ef",
+      "nome": "Leonardo",
+      "sobrenome": "Pereira",
+      "quantidade": 7653,
+      "tipo": "positivo",
+      "email": "leocunha.cabral@gmail.com",
+      "dataCriada": "16:21:23",
+      "horaCriada": "17/06/2026",
+      "dataAtualizada": "16:21:23",
+      "horaAtualizada": "17/06/2026"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: "Testes de método HTTP "
+meta:
+  id: wrk_c13a82fcff54457fb2e6e6ab0db65527
+  created: 1781723674883
+  modified: 1781724162489
+  description: ""
+collection:
+  - url: http://localhost:3000/health
+    name: get/health
+    meta:
+      id: req_7bc3451b467049ecb3d57d61d3d6c8bc
+      created: 1781723674902
+      modified: 1781724136887
+      isPrivate: false
+      description: ""
+      sortKey: -1781723674902
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.6.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/
+    name: get/users
+    meta:
+      id: req_dc38a4934bcc4788978a00815740f81d
+      created: 1781723797077
+      modified: 1781724130307
+      isPrivate: false
+      description: ""
+      sortKey: -1781723797077
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/4
+    name: get/id
+    meta:
+      id: req_ea5eba17cc4e47c483ddf4a61b5deae2
+      created: 1781723827964
+      modified: 1781724123606
+      isPrivate: false
+      description: ""
+      sortKey: -1781723827964
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/
+    name: post/users
+    meta:
+      id: req_ba016f90e2d347559df2a4845de56e53
+      created: 1781723876731
+      modified: 1781724116912
+      isPrivate: false
+      description: ""
+      sortKey: -1781723876731
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Teste",
+          "lastName": "De Postagem",
+          "quantity": 1234,
+          "type": "positivo",
+          "email": "TesteDePost@gmail.com",
+          "dataCriada": "", 
+          "horaCriada": "",
+          "dataAtualizada": "",
+          "horaAtualizada": ""
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/6130cdab-21de-4cad-8877-ddaf40294e0e
+    name: patch/id
+    meta:
+      id: req_9fefb14a4ad24bedbd2e5ebeaadaeccc
+      created: 1781723979821
+      modified: 1781724108588
+      isPrivate: false
+      description: ""
+      sortKey: -1781723979821
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Teste",
+          "lastName": "De Postagem",
+          "quantity": -4321,
+          "type": "negativo",
+          "email": "Postagem.deTeste@gmail.com",
+          "dataCriada": "", 
+          "horaCriada": "",
+          "dataAtualizada": "",
+          "horaAtualizada": ""
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/6130cdab-21de-4cad-8877-ddaf40294e0e
+    name: delete/id
+    meta:
+      id: req_f09daffade044076a03c24841ad5c203
+      created: 1781724057985
+      modified: 1781724101799
+      isPrivate: false
+      description: ""
+      sortKey: -1781724057985
+    method: DELETE
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0e85370adee997000ff8f19521da02d3212f9a04
+    created: 1781723674891
+    modified: 1781723674891
+environments:
+  name: Base Environment
+  meta:
+    id: env_0e85370adee997000ff8f19521da02d3212f9a04
+    created: 1781723674887
+    modified: 1781723674887
+    isPrivate: false
